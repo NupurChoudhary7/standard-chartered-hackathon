@@ -1,0 +1,45 @@
+.app {
+  background-color: rgb(240, 139, 139); /* Light pink background */
+  height: 100vh;           
+  width: 100vw;            
+  margin: 0;
+  padding: 0;
+  overflow: hidden;        
+}
+
+.home {
+  background-color: white; /* Clean background */
+  color: rgb(197, 57, 57);                   
+  padding: 2rem;                  
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(249, 175, 175); 
+  color: rgb(242, 51, 83); 
+  height: 100vh;
+  overflow: hidden; 
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+html, body {
+    height: 100%; 
+    overflow-y: auto; /* Enable scrolling */
+    background-color: #F8A8C8; /* Primary background */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+#root, .app {
+    min-height: 100vh;
+    overflow-y: auto; /* Ensures scrolling */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

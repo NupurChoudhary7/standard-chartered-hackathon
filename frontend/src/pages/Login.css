@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+  background-color: #F9F9F9; /* Neutral background */
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  color: #4A4A4A; /* Text color */
+}
+
+.login-container {
+  min-height: 100vh; /* Ensures scrolling works */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
+.welcome-text {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #E85A9C; /* Accent - Bold Pink */
+}
+
+.error-message {
+  color: #E85A9C;
+  background-color: #FDCEDF; /* Secondary - Muted Pink */
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+label {
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 0.3rem;
+}
+
+input {
+  background-color: #FDCEDF; /* Secondary - Muted Pink */
+  color: #4A4A4A; /* Dark Gray text */
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input::placeholder {
+  color: #E85A9C; /* Accent Pink placeholder */
+}
+
+button {
+  background-color: #E85A9C; /* Accent - Bold Pink */
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #d14e8c; /* Darker shade for hover */
+}
+
+button:disabled {
+  background-color: #FDCEDF; /* Softened for disabled */
+  cursor: not-allowed;
+}
+
+.signup-link {
+  margin-top: 1.5rem;
+  font-weight: 600;
+  color: #E85A9C;
+  cursor: pointer;
+}
+
+.signup-link span:hover {
+  text-decoration: underline;
+}
+
+.back-arrow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.5rem;
+  color: #E85A9C; /* Accent - Bold Pink */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.back-arrow:hover {
+  transform: translateX(-5px); /* Subtle hover effect */
+}

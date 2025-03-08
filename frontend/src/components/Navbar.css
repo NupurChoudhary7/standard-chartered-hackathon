@@ -1,0 +1,47 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensures name on left, links on right */
+  padding: 1rem 2rem;
+  background-color: #f19e9e;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+}
+
+.navbar-content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.website-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.website-icon {
+  color: #48d225; /* Green color for the leaf icon */
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: #faf5f5;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #096d0c; /* Highlight effect on hover */
+}
