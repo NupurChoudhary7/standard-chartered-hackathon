@@ -10,8 +10,8 @@
     margin-top: 1300px; /* Removed large top margin */
 }
 .gender-dropdown{
-    color:white;
-    background-color: #b17993;
+    color:rgb(211, 144, 144);
+    background-color: #ffffff;
     padding: 10px;
     border-radius: 6px;
 }
@@ -24,7 +24,7 @@
     border: 2px solid #E85A9C; /* Pink border */
     border-radius: 6px;
     background-color: white; /* White background */
-    color: #4A4A4A; /* Dark gray text */
+    color: #b57171; /* Dark gray text */
     outline: none;
     min-height: 100px; /* Makes the textarea larger */
     resize: vertical; /* Allows vertical resizing */
