@@ -1,40 +1,42 @@
+/* Style for the Navbar */
 .navbar {
   display: flex;
-  align-items: center;
-  justify-content: space-between; /* Ensures name on left, links on right */
+  justify-content: center; /* Center the navbar content horizontally */
+  align-items: center; /* Center the navbar content vertically */
   padding: 1rem 2rem;
-  background-color: #f19e9e;
+  background-color: #bd5d5d;
   color: #fff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
 }
 
+/* Container for the navbar content */
 .navbar-content {
   display: flex;
-  width: 100%;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* The name stays on the left and links are centered */
+  width: 100%;
+  max-width: 1200px; /* Optional: Set a max-width to prevent it from stretching too wide */
 }
 
+/* Style for the website name */
 .website-name {
+  font-size: 1.5rem;
+  font-weight: bold;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-weight: bold;
-  font-size: 1.5rem;
+  margin-right: auto; /* Ensures the name stays on the leftmost side */
 }
 
-.website-icon {
-  color: #48d225; /* Green color for the leaf icon */
-}
-
+/* Style for the navigation links */
 .nav-links {
   display: flex;
   list-style: none;
   gap: 2rem;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
+/* Style for individual nav links */
 .nav-links a {
   color: #faf5f5;
   text-decoration: none;
@@ -43,5 +45,5 @@
 }
 
 .nav-links a:hover {
-  color: #096d0c; /* Highlight effect on hover */
+  color: rgb(51, 120, 58);
 }

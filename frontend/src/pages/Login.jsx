@@ -45,7 +45,7 @@ function Login() {
         <FaArrowLeft />
       </div>
 
-      <h1 className="welcome-text">Welcome Back!!</h1>
+      <h1 className="welcome-text" style={{color:"white"}}>Welcome Back!!</h1>
 
       {error && <p className="error-message">{error}</p>}
 
@@ -72,9 +72,9 @@ function Login() {
           {isLoading ? 'Logging in...' : 'Login'}
         </button>
 
-        <p className="signup-link">
+        <p className="signup-link" style={{ color: 'white' }} >
           Don't have an account?{' '}
-          <span onClick={() => navigate('/signup')}>Sign Up</span>
+          <span onClick={() => navigate('/signup')} style={{ color: 'white' }} >Sign Up</span>
         </p>
       </form>
     </div>

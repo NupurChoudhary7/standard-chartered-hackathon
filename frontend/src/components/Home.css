@@ -11,7 +11,14 @@ body, html {
     height: 100vh;
     overflow: hidden; /* Prevent content from overflowing */
 }
-
+.back-arrow{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
 /* Background carousel styles */
 .background-carousel {
     position: absolute;

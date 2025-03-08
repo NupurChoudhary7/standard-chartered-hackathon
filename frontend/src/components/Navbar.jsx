@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'; // No need for 'exact' in React Router v6
 import './Navbar.css';
 
 function Navbar() {
@@ -12,10 +12,30 @@ function Navbar() {
 
         {/* Navigation Links */}
         <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/signup">SignUp</Link></li>
-          <li><Link to="/login">Login</Link></li>
+          <li>
+            <NavLink 
+              to="/" 
+              className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/about" 
+              className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
+            >
+              About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/signup" 
+              className={({ isActive }) => (isActive ? 'nav-link active-link' : 'nav-link')}
+            >
+              SignUp
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>

@@ -1,65 +1,46 @@
-.signup-form {
-    background-color: #FDCEDF; /* Secondary - Muted Pink */
-    padding: 20px; /* Slightly reduced padding for a compact look */
-    border-radius: 12px; /* Softer rounded corners */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
-    width: 90%; /* More responsive layout */
-    max-width: 320px; /* Increased width for better content spacing */
-    text-align: center;
-}
-
-/* Typography adjustments for better readability */
-.signup-form label {
-    display: block;
-    margin-top: 6px; /* Reduced spacing */
-    font-weight: 600; /* Balanced font-weight */
-    color: #4A4A4A; /* Dark gray for better contrast */
-    font-family: 'Poppins', sans-serif;
-}
-
-.signup-form input {
-    width: 100%;
-    padding: 10px; /* Improved input padding */
-    margin-top: 6px; /* Balanced spacing */
-    border: 2px solid #E85A9C; /* Accent color */
-    border-radius: 6px; /* Softer corners */
-    background-color: #F9F9F9; /* Neutral background */
-    color: #4A4A4A;
-    outline: none;
-}
-
-.signup-form input::placeholder {
-    color: #E85A9C; /* Placeholder color for aesthetic consistency */
-}
-
-.signup-form button {
-    background-color: #E85A9C; /* Bold Pink for CTA */
-    color: #F9F9F9; /* Light text for readability */
-    border: none;
-    width: 100%;
-    padding: 8px; /* Balanced button size */
-    border-radius: 6px; /* Softer corners */
-    cursor: pointer;
-    margin-top: 15px; /* Balanced spacing */
-    font-weight: 600;
-    transition: background 0.3s ease;
-}
-
-.signup-form button:hover {
-    background-color: #E85A9C; /* Stronger hover effect for clarity */
-    opacity: 0.9;
-}
+/* Container for the Signup page */
 .signup-container {
-    min-height: 100vh; /* Ensures scrolling works */
+    min-height: 100vh; /* Ensures the full height of the viewport */
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; /* Ensures the form and heading are stacked vertically */
     padding: 20px;
     box-sizing: border-box;
+    margin-top: 1300px; /* Removed large top margin */
+}
+.gender-dropdown{
+    color:white;
+    background-color: #b17993;
+    padding: 10px;
+    border-radius: 6px;
 }
 
+/* Address textarea styling */
+.address-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 2px solid #E85A9C; /* Pink border */
+    border-radius: 6px;
+    background-color: white; /* White background */
+    color: #4A4A4A; /* Dark gray text */
+    outline: none;
+    min-height: 100px; /* Makes the textarea larger */
+    resize: vertical; /* Allows vertical resizing */
+  }
+  
+/* Heading for the signup page */
+.signup-heading {
+    font-size: 2.5rem; /* Font size for the heading */
+    color: #E85A9C; /* Accent color */
+    margin-bottom: 20px; /* Adds space below the heading */
+    text-align: center; /* Center align the heading */
+}
+
+/* Signup form styling */
 .signup-form {
-    background-color: #FDCEDF; 
+    background-color: #FDCEDF; /* Muted Pink */
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -67,3 +48,114 @@
     max-width: 350px; /* Slightly larger for better spacing */
     text-align: center;
 }
+
+/* Typography adjustments for better readability */
+.signup-form label {
+    display: block;
+    margin-top: 6px;
+    font-weight: 600;
+    color: #4A4A4A; /* Dark gray for better contrast */
+    font-family: 'Poppins', sans-serif;
+}
+
+.signup-form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 2px solid #E85A9C;
+    border-radius: 6px;
+    background-color: #F9F9F9;
+    color: #4A4A4A;
+    outline: none;
+}
+
+.signup-form input::placeholder {
+    color: #cea7a7; /* Placeholder color for aesthetic consistency */
+}
+
+.signup-form button {
+    background-color: #E85A9C;
+    color: #F9F9F9;
+    border: none;
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.signup-form button:hover {
+    background-color: #d14e8c; /* Darker shade for hover */
+    opacity: 0.9;
+}
+/* Signup.css */
+
+/* General Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  label {
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  
+  input, select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #E85A9C;
+    border-radius: 6px;
+    background-color: #F9F9F9;
+    color: #4A4A4A;
+    font-size: 16px;
+  }
+  
+  input:focus, select:focus {
+    outline: none;
+    border-color: #D84D7B; /* Darker pink for focus */
+  }
+  
+  /* Placeholder color */
+  input::placeholder {
+    color: #cea7a7;
+  }
+  
+  /* Button styling */
+  button {
+    background-color: #E85A9C;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  button:hover {
+    background-color: #D84D7B; /* Slightly darker on hover */
+  }
+  
+  /* Dropdown styling */
+  select {
+    background-color: white;
+  }
+  
+  select:focus {
+    border-color: #D84D7B; /* Darker pink on focus */
+  }
+  .login-link span {
+    cursor: pointer; /* Add pointer cursor for better UX */
+    transition: color 0.3s ease; /* Smooth transition effect */
+  }
+  
+  .login-link span:hover {
+    color: #cd5757; /* Change to your desired color on hover */
+  }
+  

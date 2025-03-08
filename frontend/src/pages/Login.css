@@ -9,7 +9,7 @@ body {
   align-items: center;
   justify-content: center;
   font-family: 'Poppins', sans-serif;
-  color: #4A4A4A; /* Text color */
+  color: #000000; /* Text color */
 }
 
 .login-container {
@@ -21,6 +21,16 @@ body {
   box-sizing: border-box;
 }
 
+.signup-link {
+  color: white; /* Change to white */
+  margin-top: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.signup-link span:hover {
+  text-decoration: underline;
+}
 
 .welcome-text {
   font-size: 2.5rem;
@@ -85,17 +95,6 @@ button:hover {
 button:disabled {
   background-color: #FDCEDF; /* Softened for disabled */
   cursor: not-allowed;
-}
-
-.signup-link {
-  margin-top: 1.5rem;
-  font-weight: 600;
-  color: #E85A9C;
-  cursor: pointer;
-}
-
-.signup-link span:hover {
-  text-decoration: underline;
 }
 
 .back-arrow {
