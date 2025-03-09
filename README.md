@@ -1,4 +1,11 @@
-# standard-chartered-hackathon
+AI-Powered Investment Insights for Women
+Problem Statement 8: AI-Powered Investment Insights for Women
+Description:
+This project aims to develop an AI-driven application that offers personalized investment insights specifically for women. The application analyzes market trends, user financial goals, and risk tolerance to recommend tailored investment strategies, empowering women to make informed decisions. The system integrates a chatbot leveraging generative AI to address user queries and provide personalized advice.
+
+Solution Overview:
+Our solution combines the power of AI/ML for financial analysis and personalized recommendations. By utilizing React.js for the frontend, Express.js and FastAPI for the backend, and PostgreSQL as the database, we aim to create a seamless, secure, and efficient platform for investment insights.
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
