@@ -1,12 +1,12 @@
-import './App.css';
-import DashboardPage from './pages/DashboardPage'; // Import the DashboardPage component
-import Navbar from './components/Navbar'; // Import the Navbar component
+import './frontend/App.css';
+import DashboardPage from './frontend/pages/DashboardPage'; // Import the DashboardPage component
+import Navbar from './frontend/components/Navbar'; // Import the Navbar component
 import { Routes, Route } from 'react-router-dom'; // Import routing components
-import AboutPage from './pages/AboutPage'; // Import the AboutPage component
-import LandingPage from './pages/LandingPage'; // Import the LandingPage component
-import ChatbotButton from './components/ChatbotButton'; // Import the ChatbotButton component
-import OnboardingPage from './pages/OnboardingPage'; // Import the OnboardingPage component
-import LoginPage from './pages/LoginPage'; // Import the LoginPage component
+import AboutPage from './frontend/pages/AboutPage'; // Import the AboutPage component
+import LandingPage from './frontend/pages/LandingPage'; // Import the LandingPage component
+import ChatbotButton from './frontend/components/ChatbotButton'; // Import the ChatbotButton component
+import OnboardingPage from './frontend/pages/OnboardingPage'; // Import the OnboardingPage component
+import LoginPage from './frontend/pages/LoginPage'; // Import the LoginPage component
 
 function App() {
   return (
