@@ -2,11 +2,12 @@ const express = require("express");
 const axios = require("axios");
 const pool = require("../db").default;
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken"); // Ensure jwt is imported
 const router = express.Router();
 
 const AI_API_URL = process.env.AI_API_URL;
 
-router.post("/signin", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -30,9 +31,14 @@ router.post("/signin", async (req, res) => {
       return res.status(401).json({ error: "Invalid email or password" });
     }
 
+    const token = jwt.sign({ user_id: user.user_id }, "your-secret-key", {
+      expiresIn: "1h",
+    });
+
     res.json({
       success: true,
-      message: "Authentication successful",
+      message: "Login successful",
+      token,
       user_id: user.user_id,
     });
   } catch (error) {
@@ -88,6 +94,7 @@ router.post("/onboarding", async (req, res) => {
     res.status(500).json({ error: "Error registering user" });
   }
 });
+
 router.post("/dashboard", async (req, res) => {
   try {
     const {
@@ -98,6 +105,7 @@ router.post("/dashboard", async (req, res) => {
       risk_tolerance,
       financial_literacy,
     } = req.body;
+
 
     const aiRequestBody = {
       individual_goals,

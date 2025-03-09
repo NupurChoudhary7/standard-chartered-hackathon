@@ -1,64 +1,53 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import axios from "axios"; // For making HTTP requests
 
 // Onboarding Steps
 const onboardingSteps = [
   {
-    title: 'Personal Information',
+    title: "Personal Information",
     fields: [
-      { label: 'Name', type: 'text', placeholder: 'Enter your name' },
-      { label: 'Email', type: 'email', placeholder: 'Enter your email' },
-      { label: 'Password', type: 'password', placeholder: 'Create a password' },
-      { label: 'Phone Number', type: 'tel', placeholder: 'Enter your phone number' },
+      { label: "Name", type: "text", placeholder: "Enter your name" },
+      { label: "Email", type: "email", placeholder: "Enter your email" },
+      { label: "Password", type: "password", placeholder: "Create a password" },
+      { label: "Phone Number", type: "tel", placeholder: "Enter your phone number" },
     ],
   },
   {
-    title: 'Additional Details',
+    title: "Additional Details",
     fields: [
-      { label: 'Address', type: 'text', placeholder: 'Enter your address' },
-      {
-        label: 'Gender',
-        type: 'select',
-        options: ['Male', 'Female'],
-      },
-      { label: 'Age', type: 'number', placeholder: 'Enter your age' },
+      { label: "Address", type: "text", placeholder: "Enter your address" },
+      { label: "Gender", type: "select", options: ["Male", "Female", "Other"] },
+      { label: "Age", type: "number", placeholder: "Enter your age" },
     ],
   },
   {
-    title: 'Financial Details',
+    title: "Financial Details",
     fields: [
-      { label: 'Monthly Income (INR)', type: 'number', placeholder: 'Enter your monthly income' },
-      { label: 'Current Savings (INR)', type: 'number', placeholder: 'Enter your current savings' },
-      {
-        label: 'Risk Tolerance',
-        type: 'select',
-        options: ['High', 'Medium', 'Low'], // Ensure case sensitivity
-      },
+      { label: "Monthly Income (INR)", type: "number", placeholder: "Enter your monthly income" },
+      { label: "Current Savings (INR)", type: "number", placeholder: "Enter your current savings" },
+      { label: "Risk Tolerance", type: "select", options: ["High", "Medium", "Low"] },
     ],
   },
   {
-    title: 'Investment Goals',
+    title: "Investment Goals",
     fields: [
       {
-        label: 'Goal',
-        type: 'select',
+        label: "Goal",
+        type: "select",
         options: [
-          'Saving for retirement',
-          'Buying a house',
-          'Saving for education',
-          'Purchasing for self',
-          'Starting a business',
-          'Planning a vacation',
+          "Saving for retirement",
+          "Buying a house",
+          "Saving for education",
+          "Purchasing for self",
+          "Starting a business",
+          "Planning a vacation",
         ],
       },
-      { label: 'Target Amount (INR)', type: 'number', placeholder: 'Enter target amount' },
-      { label: 'Timeframe (years)', type: 'number', placeholder: 'Enter timeframe' },
-      {
-        label: 'Financial Literacy (Scale 1 to 5)',
-        type: 'select',
-        options: ['1', '2', '3', '4', '5'], // Ensure consistent handling
-      },
+      { label: "Target Amount (INR)", type: "number", placeholder: "Enter target amount" },
+      { label: "Timeframe (years)", type: "number", placeholder: "Enter timeframe" },
+      { label: "Financial Literacy (Scale 1 to 5)", type: "select", options: ["1", "2", "3", "4", "5"] },
     ],
   },
 ];
@@ -67,13 +56,50 @@ const SignupPage = () => {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({});
   const [passwordStrength, setPasswordStrength] = useState(0);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-  const handleNextStep = () => {
+  const handleInputChange = (field, value) => {
+    setFormData({ ...formData, [field]: value });
+    setErrors({ ...errors, [field]: "" });
+  };
+
+  const handlePasswordChange = (value) => {
+    setFormData({ ...formData, password: value });
+    const strength = Math.min(value.length * 10, 100);
+    setPasswordStrength(strength);
+  };
+
+  const validateStep = () => {
+    const currentStepFields = onboardingSteps[step].fields;
+    const newErrors = {};
+
+    currentStepFields.forEach((field) => {
+      if (!formData[field.label]) {
+        newErrors[field.label] = `${field.label} is required`;
+      }
+    });
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleNextStep = async () => {
+    if (!validateStep()) return;
+
     if (step < onboardingSteps.length - 1) {
       setStep(step + 1);
     } else {
-      navigate('/dashboard'); // Redirect to dashboard
+      try {
+        // Submit form data to the backend
+        const response = await axios.post("http://localhost:5000/api/onboarding", formData);
+        if (response.data.success) {
+          navigate("/dashboard"); // Redirect to dashboard after successful submission
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("Failed to submit form. Please try again.");
+      }
     }
   };
 
@@ -81,17 +107,6 @@ const SignupPage = () => {
     if (step > 0) {
       setStep(step - 1);
     }
-  };
-
-  const handleInputChange = (field, value) => {
-    setFormData({ ...formData, [field]: value });
-  };
-
-  const handlePasswordChange = (value) => {
-    setFormData({ ...formData, password: value });
-    // Calculate password strength (simple example)
-    const strength = Math.min(value.length * 10, 100);
-    setPasswordStrength(strength);
   };
 
   const progress = ((step + 1) / onboardingSteps.length) * 100;
@@ -128,7 +143,7 @@ const SignupPage = () => {
             <label className="block text-sm font-medium text-[#4A4A4A] mb-1">
               {field.label}
             </label>
-            {field.type === 'select' ? (
+            {field.type === "select" ? (
               <select
                 className="w-full p-2 border border-[#FDCEDF] rounded focus:outline-none focus:border-[#E85A9C]"
                 onChange={(e) => handleInputChange(field.label, e.target.value)}
@@ -140,12 +155,12 @@ const SignupPage = () => {
                   </option>
                 ))}
               </select>
-            ) : field.label === 'Password' ? (
+            ) : field.label === "Password" ? (
               <>
                 <input
                   type={field.type}
                   placeholder={field.placeholder}
-                  value={formData.password || ''}
+                  value={formData.password || ""}
                   onChange={(e) => handlePasswordChange(e.target.value)}
                   className="w-full p-2 border border-[#FDCEDF] rounded focus:outline-none focus:border-[#E85A9C]"
                 />
@@ -163,10 +178,13 @@ const SignupPage = () => {
               <input
                 type={field.type}
                 placeholder={field.placeholder}
-                value={formData[field.label] || ''}
+                value={formData[field.label] || ""}
                 onChange={(e) => handleInputChange(field.label, e.target.value)}
                 className="w-full p-2 border border-[#FDCEDF] rounded focus:outline-none focus:border-[#E85A9C]"
               />
+            )}
+            {errors[field.label] && (
+              <p className="text-red-500 text-sm mt-1">{errors[field.label]}</p>
             )}
           </div>
         ))}
@@ -189,7 +207,7 @@ const SignupPage = () => {
             onClick={handleNextStep}
             className="bg-[#E85A9C] text-white py-2 px-4 rounded hover:bg-[#D14A8C] transition-colors ml-auto"
           >
-            {step === onboardingSteps.length - 1 ? 'Get Started' : 'Next'}
+            {step === onboardingSteps.length - 1 ? "Get Started" : "Next"}
           </motion.button>
         </div>
       </motion.div>

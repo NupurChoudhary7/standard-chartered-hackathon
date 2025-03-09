@@ -1,20 +1,39 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import axios from "axios"; // For making HTTP requests
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); // For displaying errors
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!email || !password) {
-      alert('Please fill in all fields.');
+      setError("Please fill in all fields.");
       return;
     }
-    alert(`Logged in with Email: ${email}`);
-    // Add your login logic here (e.g., API call, validation)
-    navigate('/dashboard'); // Redirect to dashboard after successful login
+
+    try {
+      // Send login request to the backend
+      const response = await axios.post("http://localhost:5000/api/login", {
+        email,
+        password,
+      });
+
+      if (response.data.success) {
+        // Store token in localStorage
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user_id", response.data.user_id);
+
+        // Redirect to dashboard after successful login
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setError(error.response?.data?.error || "Login failed. Please try again.");
+    }
   };
 
   return (
@@ -29,6 +48,13 @@ const LoginPage = () => {
         <h2 className="text-2xl font-semibold text-[#4A4A4A] mb-6 text-center">
           Welcome Back!
         </h2>
+
+        {/* Error Message */}
+        {error && (
+          <div className="mb-4 p-2 bg-red-100 text-red-600 text-sm rounded">
+            {error}
+          </div>
+        )}
 
         {/* Email Field */}
         <div className="mb-4">
@@ -70,7 +96,7 @@ const LoginPage = () => {
 
         {/* Signup Link */}
         <p className="text-sm text-[#4A4A4A] mt-6 text-center">
-          Don't have an account?{' '}
+          Don't have an account?{" "}
           <a href="/onboarding" className="text-[#E85A9C] hover:underline">
             Sign up
           </a>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Line } from 'react-chartjs-2';
+import React, { useState, useEffect } from "react";
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,9 +9,10 @@ import {
   Title,
   Tooltip as ChartTooltip,
   Legend,
-} from 'chart.js';
-import { Tooltip } from 'react-tooltip';
-import { motion } from 'framer-motion';
+} from "chart.js";
+import { Tooltip } from "react-tooltip";
+import { motion } from "framer-motion";
+import axios from "axios"; // For making HTTP requests
 
 // Register Chart.js components
 ChartJS.register(
@@ -26,37 +27,50 @@ ChartJS.register(
 
 const DashboardPage = () => {
   // State for interactivity
-  const [sortBy, setSortBy] = useState('name');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState("name");
+  const [searchQuery, setSearchQuery] = useState("");
   const [marketData, setMarketData] = useState({
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+    labels: ["Jan", "Feb", "Mar", "Apr", "May"],
     datasets: [
       {
-        label: 'Market Trends',
+        label: "Market Trends",
         data: [3000, 3100, 3200, 3300, 3400],
-        borderColor: '#E85A9C',
-        backgroundColor: '#FDCEDF',
+        borderColor: "#E85A9C",
+        backgroundColor: "#FDCEDF",
       },
     ],
   });
 
   // Mock data
   const investments = [
-    { id: 1, name: 'S&P 500 Index Fund', return: '+7.5%', risk: 'Medium' },
-    { id: 2, name: 'Tech Growth Fund', return: '+10.2%', risk: 'High' },
-    { id: 3, name: 'Energy Sector ETF', return: '+5.5%', risk: 'Medium' },
+    { id: 1, name: "S&P 500 Index Fund", return: "+7.5%", risk: "Medium" },
+    { id: 2, name: "Tech Growth Fund", return: "+10.2%", risk: "High" },
+    { id: 3, name: "Energy Sector ETF", return: "+5.5%", risk: "Medium" },
   ];
 
   const goals = [
-    { id: 1, name: 'Retirement', progress: 70, target: 100000, timeframe: 20 },
-    { id: 2, name: 'House Down Payment', progress: 50, target: 50000, timeframe: 5 },
+    { id: 1, name: "Retirement", progress: 70, target: 100000, timeframe: 20 },
+    { id: 2, name: "House Down Payment", progress: 50, target: 50000, timeframe: 5 },
   ];
 
   const topPicks = [
-    { id: 1, name: 'Apple', price: 150, change: '+2.5%' },
-    { id: 2, name: 'Tesla', price: 700, change: '+5.1%' },
-    { id: 3, name: 'Microsoft', price: 300, change: '+1.8%' },
+    { id: 1, name: "Apple", price: 150, change: "+2.5%" },
+    { id: 2, name: "Tesla", price: 700, change: "+5.1%" },
+    { id: 3, name: "Microsoft", price: 300, change: "+1.8%" },
   ];
+
+  // Fetch investment recommendations from the backend
+  const fetchRecommendations = async () => {
+    try {
+      const user_id = localStorage.getItem("user_id");
+      const response = await axios.get("http://localhost:5000/api/dashboard", {
+        params: { user_id },
+      });
+      console.log("Recommendations:", response.data);
+    } catch (error) {
+      console.error("Error fetching recommendations:", error);
+    }
+  };
 
   // Handle goal click
   const handleGoalClick = (goal) => {
@@ -84,17 +98,22 @@ const DashboardPage = () => {
     return () => clearInterval(interval);
   }, [marketData]);
 
+  // Fetch recommendations when the component mounts
+  useEffect(() => {
+    fetchRecommendations();
+  }, []);
+
   // Sort investments
   const sortedInvestments = [...investments].sort((a, b) => {
-    if (sortBy === 'name') return a.name.localeCompare(b.name);
-    if (sortBy === 'return') return parseFloat(b.return) - parseFloat(a.return);
+    if (sortBy === "name") return a.name.localeCompare(b.name);
+    if (sortBy === "return") return parseFloat(b.return) - parseFloat(a.return);
     return 0;
   });
 
   // Filter investments by search query
   const filteredInvestments = sortedInvestments.filter((investment) =>
     investment.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
-    (investment.risk === 'Low' || investment.risk === 'Medium' || investment.risk === 'High')
+    (investment.risk === "Low" || investment.risk === "Medium" || investment.risk === "High")
   );
 
   return (
