@@ -3,8 +3,8 @@ import { FaChartLine, FaUserShield, FaLightbulb } from 'react-icons/fa';
 
 const LandingPage = () => {
   const testimonials = [
-    { text: "WealthHer helped me grow my savings by 20%! The personalized recommendations are a game-changer.", author: "Jane Doe" },
-    { text: "I finally feel confident about my financial future, thanks to WealthHer's smart insights.", author: "Sarah K." },
+    { text: "Vesta AI helped me grow my savings by 20%! The personalized recommendations are a game-changer.", author: "Jane Doe" },
+    { text: "I finally feel confident about my financial future, thanks to Vesta AI's smart insights.", author: "Sarah K." },
     { text: "The best financial tool I've ever used. It's intuitive, empowering, and truly effective.", author: "Emily R." }
   ];
 
