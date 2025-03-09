@@ -11,7 +11,11 @@ const onboardingSteps = [
       { label: "Name", type: "text", placeholder: "Enter your name" },
       { label: "Email", type: "email", placeholder: "Enter your email" },
       { label: "Password", type: "password", placeholder: "Create a password" },
-      { label: "Phone Number", type: "tel", placeholder: "Enter your phone number" },
+      {
+        label: "Phone Number",
+        type: "tel",
+        placeholder: "Enter your phone number",
+      },
     ],
   },
   {
@@ -25,9 +29,21 @@ const onboardingSteps = [
   {
     title: "Financial Details",
     fields: [
-      { label: "Monthly Income (INR)", type: "number", placeholder: "Enter your monthly income" },
-      { label: "Current Savings (INR)", type: "number", placeholder: "Enter your current savings" },
-      { label: "Risk Tolerance", type: "select", options: ["High", "Medium", "Low"] },
+      {
+        label: "Monthly Income (INR)",
+        type: "number",
+        placeholder: "Enter your monthly income",
+      },
+      {
+        label: "Current Savings (INR)",
+        type: "number",
+        placeholder: "Enter your current savings",
+      },
+      {
+        label: "Risk Tolerance",
+        type: "select",
+        options: ["High", "Medium", "Low"],
+      },
     ],
   },
   {
@@ -45,16 +61,31 @@ const onboardingSteps = [
           "Planning a vacation",
         ],
       },
-      { label: "Target Amount (INR)", type: "number", placeholder: "Enter target amount" },
-      { label: "Timeframe (years)", type: "number", placeholder: "Enter timeframe" },
-      { label: "Financial Literacy (Scale 1 to 5)", type: "select", options: ["1", "2", "3", "4", "5"] },
+      {
+        label: "Target Amount (INR)",
+        type: "number",
+        placeholder: "Enter target amount",
+      },
+      {
+        label: "Timeframe (years)",
+        type: "number",
+        placeholder: "Enter timeframe",
+      },
+      {
+        label: "Financial Literacy (Scale 1 to 5)",
+        type: "select",
+        options: ["1", "2", "3", "4", "5"],
+      },
     ],
   },
 ];
 
 const SignupPage = () => {
   const [step, setStep] = useState(0);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    Gender: "",
+    RiskTolerance: "",
+  });
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -75,7 +106,10 @@ const SignupPage = () => {
     const newErrors = {};
 
     currentStepFields.forEach((field) => {
-      if (!formData[field.label]) {
+      if (
+        !formData[field.label] &&
+        (field.label !== "Password" || !formData.password)
+      ) {
         newErrors[field.label] = `${field.label} is required`;
       }
     });
@@ -91,10 +125,54 @@ const SignupPage = () => {
       setStep(step + 1);
     } else {
       try {
-        // Submit form data to the backend
-        const response = await axios.post("http://localhost:5000/api/onboarding", formData);
+        // Manually encode the values before submitting the form
+        const encodedFormData = {
+          ...formData,
+          Goal:
+            formData.Goal === "Saving for retirement"
+              ? 0
+              : formData.Goal === "Buying a house"
+              ? 1
+              : formData.Goal === "Saving for education"
+              ? 2
+              : formData.Goal === "Purchasing for self"
+              ? 3
+              : formData.Goal === "Starting a business"
+              ? 4
+              : formData.Goal === "Planning a vacation"
+              ? 5
+              : formData.Goal, // Encoding Goal
+
+          Gender:
+            formData.Gender === "Female"
+              ? 0
+              : formData.Gender === "Male"
+              ? 1
+              : formData.Gender === "Other"
+              ? 2
+              : formData.Gender, // Encoding Gender
+
+          RiskTolerance:
+            formData.RiskTolerance === "High"
+              ? 0
+              : formData.RiskTolerance === "Medium"
+              ? 1
+              : formData.RiskTolerance === "Low"
+              ? 2
+              : formData.RiskTolerance, // Encoding Risk Tolerance
+
+          age: parseInt(formData.age), // Ensure age is an integer
+          monthly_income: parseFloat(formData.monthly_income), // Ensure monthly income is numeric
+          current_saving: parseFloat(formData.current_saving), // Ensure current savings is numeric
+          financial_literacy: parseInt(formData.financial_literacy), // Ensure literacy is integer
+        };
+
+        const response = await axios.post(
+          "https://ai-investment-backend-ozm7.onrender.com/api/onboarding",
+          encodedFormData
+        );
         if (response.data.success) {
-          navigate("/dashboard"); // Redirect to dashboard after successful submission
+          navigate("/dashboard");
         }
       } catch (error) {
         console.error("Error submitting form:", error);
@@ -119,7 +197,6 @@ const SignupPage = () => {
         transition={{ duration: 0.5 }}
         className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md"
       >
-        {/* Progress Bar */}
         <div className="mb-6">
           <div className="w-full bg-[#FDCEDF] rounded-full h-2.5">
             <div
@@ -132,12 +209,10 @@ const SignupPage = () => {
           </p>
         </div>
 
-        {/* Step Title */}
         <h2 className="text-2xl font-semibold text-[#4A4A4A] mb-6 text-center">
           {onboardingSteps[step].title}
         </h2>
 
-        {/* Form Fields */}
         {onboardingSteps[step].fields.map((field, index) => (
           <div key={index} className="mb-4">
             <label className="block text-sm font-medium text-[#4A4A4A] mb-1">
@@ -146,6 +221,7 @@ const SignupPage = () => {
             {field.type === "select" ? (
               <select
                 className="w-full p-2 border border-[#FDCEDF] rounded focus:outline-none focus:border-[#E85A9C]"
+                value={formData[field.label] || ""}
                 onChange={(e) => handleInputChange(field.label, e.target.value)}
               >
                 <option value="">Select {field.label}</option>
@@ -189,7 +265,6 @@ const SignupPage = () => {
           </div>
         ))}
 
-        {/* Navigation Buttons */}
         <div className="flex justify-between mt-6">
           {step > 0 && (
             <motion.button
