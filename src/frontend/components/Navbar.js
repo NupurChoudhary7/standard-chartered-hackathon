@@ -36,12 +36,18 @@ const Navbar = () => {
           >
             About
           </NavLink>
-          <a
-            href="#features"
-            className="py-3 px-4 rounded transition duration-200 font-poppins font-medium text-[16px] text-[#4A4A4A] hover:text-[#E85A9C]"
+          <NavLink
+            to="/features"
+            className={({ isActive }) =>
+              `py-3 px-4 rounded transition duration-200 font-poppins font-medium text-[16px] ${
+                isActive
+                  ? "bg-[#FDCEDF] text-[#E85A9C]"
+                  : "text-[#4A4A4A] hover:text-[#E85A9C]"
+              }`
+            }
           >
             Features
-          </a>
+          </NavLink>
           <Link
             to="/login"
             className="bg-[#E85A9C] text-white font-poppins font-medium text-[16px] py-3 px-6 rounded hover:bg-[#D84A8C] transition duration-200"

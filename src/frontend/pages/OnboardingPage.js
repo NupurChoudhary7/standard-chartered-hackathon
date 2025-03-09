@@ -33,7 +33,7 @@ const onboardingSteps = [
       {
         label: 'Risk Tolerance',
         type: 'select',
-        options: ['High', 'Medium', 'Low'],
+        options: ['High', 'Medium', 'Low'], // Ensure case sensitivity
       },
     ],
   },
@@ -57,7 +57,7 @@ const onboardingSteps = [
       {
         label: 'Financial Literacy (Scale 1 to 5)',
         type: 'select',
-        options: ['1', '2', '3', '4', '5'],
+        options: ['1', '2', '3', '4', '5'], // Ensure consistent handling
       },
     ],
   },

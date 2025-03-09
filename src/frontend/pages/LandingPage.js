@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { FaChartLine, FaUserShield, FaLightbulb } from 'react-icons/fa';
 
 const LandingPage = () => {
+  const testimonials = [
+    { text: "WealthHer helped me grow my savings by 20%! The personalized recommendations are a game-changer.", author: "Jane Doe" },
+    { text: "I finally feel confident about my financial future, thanks to WealthHer's smart insights.", author: "Sarah K." },
+    { text: "The best financial tool I've ever used. It's intuitive, empowering, and truly effective.", author: "Emily R." }
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
   return (
     <div className="min-h-screen bg-[#F9F9F9] font-poppins">
       {/* Hero Section */}
       <section className="relative bg-[#FDCEDF] py-32 overflow-hidden">
-        {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1554224155-6726b3ff8586?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1911&q=80')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1554224155-6726b3ff8586?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1911&q=80')`,
           }}
         >
-          {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#F8A8C8] to-[#FDCEDF] opacity-90"></div>
         </div>
-
-        {/* Content */}
         <div className="relative container mx-auto px-6 text-center">
           <h1 className="text-5xl font-semibold text-[#4A4A4A] mb-6">
             Empowering Women to Invest Smarter
@@ -37,66 +49,23 @@ const LandingPage = () => {
 
       {/* Features Section */}
       <section id="features" className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-semibold text-[#4A4A4A] text-center mb-12">
-            Key Features
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Feature 1 */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-[#FDCEDF]">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/3135/3135679.png"
-                alt="Tailored Recommendations"
-                className="w-16 h-16 mx-auto mb-4"
-              />
-              <h3 className="text-xl font-semibold text-[#4A4A4A] mb-2">
-                Tailored Just for You
-              </h3>
-              <p className="text-[#4A4A4A]">
-                Get investment recommendations based on your financial goals, risk tolerance, and preferences.
-              </p>
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-semibold text-[#4A4A4A] mb-12">Our Key Features</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="p-6 bg-[#FDCEDF] rounded-lg shadow-md flex flex-col items-center">
+              <FaChartLine className="text-4xl text-[#E85A9C] mb-4" />
+              <h3 className="text-xl font-semibold text-[#4A4A4A]">Smart Investments</h3>
+              <p className="text-[#4A4A4A]">Get AI-driven insights to grow your wealth effectively.</p>
             </div>
-            {/* Feature 2 */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-[#FDCEDF]">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/3135/3135679.png"
-                alt="Market Insights"
-                className="w-16 h-16 mx-auto mb-4"
-              />
-              <h3 className="text-xl font-semibold text-[#4A4A4A] mb-2">
-                Stay Ahead of the Market
-              </h3>
-              <p className="text-[#4A4A4A]">
-                Access real-time market trends and insights powered by advanced AI algorithms.
-              </p>
+            <div className="p-6 bg-[#FDCEDF] rounded-lg shadow-md flex flex-col items-center">
+              <FaUserShield className="text-4xl text-[#E85A9C] mb-4" />
+              <h3 className="text-xl font-semibold text-[#4A4A4A]">Secure & Private</h3>
+              <p className="text-[#4A4A4A]">Your data is safe with us, ensuring full confidentiality.</p>
             </div>
-            {/* Feature 3 */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-[#FDCEDF]">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/3135/3135679.png"
-                alt="Financial Planning"
-                className="w-16 h-16 mx-auto mb-4"
-              />
-              <h3 className="text-xl font-semibold text-[#4A4A4A] mb-2">
-                Plan for Your Future
-              </h3>
-              <p className="text-[#4A4A4A]">
-                Set and track financial goals like retirement, buying a house, or starting a business.
-              </p>
-            </div>
-            {/* Feature 4 */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-[#FDCEDF]">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/3135/3135679.png"
-                alt="Data Privacy"
-                className="w-16 h-16 mx-auto mb-4"
-              />
-              <h3 className="text-xl font-semibold text-[#4A4A4A] mb-2">
-                Your Data, Your Privacy
-              </h3>
-              <p className="text-[#4A4A4A]">
-                We use state-of-the-art encryption to keep your financial data safe and secure.
-              </p>
+            <div className="p-6 bg-[#FDCEDF] rounded-lg shadow-md flex flex-col items-center">
+              <FaLightbulb className="text-4xl text-[#E85A9C] mb-4" />
+              <h3 className="text-xl font-semibold text-[#4A4A4A]">Expert Guidance</h3>
+              <p className="text-[#4A4A4A]">Learn from financial experts with curated resources.</p>
             </div>
           </div>
         </div>
@@ -105,34 +74,15 @@ const LandingPage = () => {
       {/* Testimonial Section */}
       <section className="bg-[#FDCEDF] py-20">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-semibold text-[#4A4A4A] mb-12">
-            What Our Users Say
-          </h2>
-          <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+          <h2 className="text-3xl font-semibold text-[#4A4A4A] mb-12">What Our Users Say</h2>
+          <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md transition-opacity duration-1000 ease-in-out animate-fade-in-out">
             <p className="text-[#4A4A4A] mb-4">
-              "WealthHer helped me grow my savings by 20%! The personalized recommendations are a game-changer."
+              "{testimonials[index].text}"
             </p>
-            <div className="flex items-center justify-center space-x-4">
-              <img
-                src="https://via.placeholder.com/50"
-                alt="User"
-                className="w-12 h-12 rounded-full"
-              />
-              <div>
-                <p className="font-semibold text-[#4A4A4A]">Jane Doe</p>
-                <p className="text-sm text-[#4A4A4A]">Financial Analyst</p>
-              </div>
-            </div>
+            <p className="font-semibold text-[#4A4A4A]">- {testimonials[index].author}</p>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-[#4A4A4A] py-8">
-        <div className="container mx-auto px-6 text-center text-white">
-          <p>&copy; 2023 WealthHer. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 };
