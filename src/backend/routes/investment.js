@@ -50,7 +50,7 @@ router.post("/onboarding", async (req, res) => {
       financial_literacy,
       address,
       risk_tolerance,
-      individual_goals,
+      financial_goals,
       password,
       investment_type,
       name,
@@ -63,7 +63,7 @@ router.post("/onboarding", async (req, res) => {
 
     const result = await pool.query(
       `INSERT INTO users (age, monthly_income, current_saving, financial_literacy, address, risk_tolerance, 
-                          individual_goals, password, investment_type, name, gender, email, phone_number) 
+                          financial_goals, password, investment_type, name, gender, email, phone_number) 
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING user_id`,
       [
         age,
@@ -72,7 +72,7 @@ router.post("/onboarding", async (req, res) => {
         financial_literacy,
         address,
         risk_tolerance,
-        individual_goals,
+        financial_goals,
         hashedPassword,
         investment_type,
         name,
@@ -99,7 +99,6 @@ router.post("/dashboard", async (req, res) => {
       financial_literacy,
     } = req.body;
 
-    // Send only required fields to AI API
     const aiRequestBody = {
       individual_goals,
       age,
@@ -130,7 +129,10 @@ router.post("/dashboard", async (req, res) => {
 
     res.json({ success: true, recommended_products });
   } catch (error) {
-    console.error("Error in /dashboard:", error.response?.data || error.message);
+    console.error(
+      "Error in /dashboard:",
+      error.response?.data || error.message
+    );
     res
       .status(500)
       .json({ error: "Error processing investment recommendation" });
