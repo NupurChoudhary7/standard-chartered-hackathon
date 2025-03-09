@@ -28,30 +28,30 @@ function Home() {
         </div>
       ) : (
         <div className="features-section">
-          <h2 className="fade-in" style={{ color: 'white' }}>Our Amazing Features</h2>
+        <center>  <h2 className="fade-in" style={{ color: 'white' , marginTop: "100px"}}>Our Amazing Features</h2></center>
           <div className="features-grid">
             <div className="feature-block fade-in">
-              <img src="/assets/investment.jpeg" alt="Investment" />
+              <img src="/assets/investment.jpeg" alt="Investment" style={{ width: '300px', height: '180px' }}/>
               <h3 style={{ color: 'white' }}>💼 Tailored Just for You</h3>
               <p style={{ color: 'white' }}>Get investment recommendations based on your financial goals, risk tolerance, and preferences.</p>
             </div>
             <div className="feature-block fade-in">
-              <img src="/assets/market.jpeg" alt="Market Insights" />
+              <img src="/assets/market.jpeg" alt="Market Insights" style={{ width: '300px', height: '180px' }}/>
               <h3 style={{ color: 'white' }}>📈 Stay Ahead of the Market</h3>
               <p style={{ color: 'white' }}>Access real-time market trends and insights powered by advanced AI algorithms.</p>
             </div>
             <div className="feature-block fade-in">
-              <img src="/assets/market1.jpeg" alt="Financial Planning" />
+              <img src="/assets/market1.jpeg" alt="Financial Planning" style={{ width: '300px', height: '180px' }} />
               <h3 style={{ color: 'white' }}>🎯 Plan for Your Future</h3>
               <p style={{ color: 'white' }}>Set and track financial goals like retirement, buying a house, or starting a business.</p>
             </div>
             <div className="feature-block fade-in">
-              <img src="/assets/security.webp" alt="Privacy" style={{ width: '250px', height: '150px' }} />
+              <img src="/assets/security.webp" alt="Privacy" style={{ width: '300px', height: '180px' }} />
               <h3 style={{ color: 'white' }}>🔒 Your Data, Your Privacy</h3>
               <p style={{ color: 'white' }}>We use state-of-the-art encryption to keep your financial data safe and secure.</p>
             </div>
             <div className="feature-block fade-in">
-              <img src="/assets/chatbot.png" alt="Chatbot" style={{ width: '250px', height: '160px' }} />
+              <img src="/assets/chatbot.png" alt="Chatbot" style={{ width: '300px', height: '180px' }} />
               <h3 style={{ color: 'white' }}>🤖 24/7 Support</h3>
               <p style={{ color: 'white' }}>Get instant answers to your investment questions with our AI-powered chatbot.</p>
             </div>

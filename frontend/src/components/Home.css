@@ -90,3 +90,35 @@ body, html {
     66.66% { transform: translateX(-200vw); } /* Move after the second image */
     100% { transform: translateX(0); } /* Restart from the first image */
 }
+
+.features-section {
+  position: relative;
+  z-index: 1; /* Ensures features are above the video */
+  padding: 20px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.feature-block img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.scroll-text {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+}
+
+.scroll-text:hover {
+  color: #E85A9C;
+}
