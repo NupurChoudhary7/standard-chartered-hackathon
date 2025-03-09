@@ -2,12 +2,11 @@ const express = require("express");
 const axios = require("axios");
 const pool = require("../db").default;
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken"); // Ensure jwt is imported
 const router = express.Router();
 
 const AI_API_URL = process.env.AI_API_URL;
 
-router.post("/login", async (req, res) => {
+router.post("/signin", async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -31,14 +30,9 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ error: "Invalid email or password" });
     }
 
-    const token = jwt.sign({ user_id: user.user_id }, "your-secret-key", {
-      expiresIn: "1h",
-    });
-
     res.json({
       success: true,
-      message: "Login successful",
-      token,
+      message: "Authentication successful",
       user_id: user.user_id,
     });
   } catch (error) {
@@ -56,7 +50,7 @@ router.post("/onboarding", async (req, res) => {
       financial_literacy,
       address,
       risk_tolerance,
-      financial_goals,
+      individual_goals,
       password,
       investment_type,
       name,
@@ -69,7 +63,7 @@ router.post("/onboarding", async (req, res) => {
 
     const result = await pool.query(
       `INSERT INTO users (age, monthly_income, current_saving, financial_literacy, address, risk_tolerance, 
-                          financial_goals, password, investment_type, name, gender, email, phone_number) 
+                          individual_goals, password, investment_type, name, gender, email, phone_number) 
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING user_id`,
       [
         age,
@@ -78,7 +72,7 @@ router.post("/onboarding", async (req, res) => {
         financial_literacy,
         address,
         risk_tolerance,
-        financial_goals,
+        individual_goals,
         hashedPassword,
         investment_type,
         name,
@@ -94,7 +88,6 @@ router.post("/onboarding", async (req, res) => {
     res.status(500).json({ error: "Error registering user" });
   }
 });
-
 router.post("/dashboard", async (req, res) => {
   try {
     const {
@@ -105,7 +98,6 @@ router.post("/dashboard", async (req, res) => {
       risk_tolerance,
       financial_literacy,
     } = req.body;
-
 
     const aiRequestBody = {
       individual_goals,
