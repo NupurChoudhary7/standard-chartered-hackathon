@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import './frontend/App.css';
 import DashboardPage from './frontend/pages/DashboardPage'; // Import the DashboardPage component
 import Navbar from './frontend/components/Navbar'; // Import the Navbar component
@@ -9,6 +10,19 @@ import OnboardingPage from './frontend/pages/OnboardingPage'; // Import the Onbo
 import LoginPage from './frontend/pages/LoginPage'; // Import the LoginPage component
 
 function App() {
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href =
+      'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0';
+    document.head.appendChild(link);
+
+    // Cleanup function to remove the link when the component unmounts
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
   return (
     <div className="App">
       <Navbar /> {/* Add the Navbar component here */}
