@@ -1,0 +1,18 @@
+.dashboard {
+  padding: 20px;
+}
+
+.investment-overview, .progress-toward-goals, .market-trends, .top-picks {
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: #FFFFFF;
+  border: 1px solid #F0F0F0;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.progress-bar {
+  margin-top: 10px;
+}

@@ -19,9 +19,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Change to flex-start to align content at the top */
   font-size: calc(10px + 2vmin);
   color: white;
+  margin-left: 250px; /* Add margin to accommodate the fixed Navbar */
 }
 
 .App-link {
