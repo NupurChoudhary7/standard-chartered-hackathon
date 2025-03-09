@@ -93,7 +93,8 @@ const DashboardPage = () => {
 
   // Filter investments by search query
   const filteredInvestments = sortedInvestments.filter((investment) =>
-    investment.name.toLowerCase().includes(searchQuery.toLowerCase())
+    investment.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+    (investment.risk === 'Low' || investment.risk === 'Medium' || investment.risk === 'High')
   );
 
   return (

@@ -2,40 +2,50 @@ import React from 'react';
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-[#F9F9F9] font-poppins p-6">
-      <h1 className="text-4xl font-semibold text-[#4A4A4A] mb-4">About Us</h1>
-      <p className="text-lg text-[#4A4A4A] mb-4">
-        Empowering Women through Intelligent Investment Solutions.
-      </p>
-      <p className="text-lg text-[#4A4A4A] mb-4">
-        At Women Invest AI, we believe that financial independence is crucial for women to take control of their futures. Our AI-powered investment platform is designed specifically with women in mind. With cutting-edge technology, personalized strategies, and expert advice, we help you make informed, confident investment decisions.
-      </p>
-      <h3 className="text-2xl font-semibold text-[#4A4A4A] mb-2">Why Choose Women Invest AI?</h3>
-      <h3 className="text-2xl font-semibold text-[#4A4A4A] mb-2">Frequently Asked Questions</h3>
-      <h4 className="text-xl font-semibold text-[#4A4A4A] mb-1">1. What is Women Invest AI?</h4>
-      <p className="text-lg text-[#4A4A4A] mb-4">
-        Women Invest AI is an AI-powered investment platform designed specifically for women, providing personalized strategies and expert advice to help you make informed investment decisions.
-      </p>
-      <h4 className="text-xl font-semibold text-[#4A4A4A] mb-1">2. How does the AI work?</h4>
-      <p className="text-lg text-[#4A4A4A] mb-4">
-        Our AI algorithms analyze market trends, personal preferences, and risk tolerance to develop a customized investment strategy tailored to your financial goals.
-      </p>
-      <h4 className="text-xl font-semibold text-[#4A4A4A] mb-1">3. Is the platform suitable for beginners?</h4>
-      <p className="text-lg text-[#4A4A4A] mb-4">
-        Yes! Our platform is designed to simplify investing for all levels, providing easy-to-understand recommendations and guidance for both beginners and experienced investors.
-      </p>
-      <h4 className="text-xl font-semibold text-[#4A4A4A] mb-1">1. Empowering Women to Build Wealth</h4>
-      <p className="text-lg text-[#4A4A4A] mb-4">
-        We understand the unique financial needs of women. Our platform helps you take control of your financial journey, empowering you to invest with confidence and build wealth for a secure future.
-      </p>
-      <h4 className="text-xl font-semibold text-[#4A4A4A] mb-1">2. AI-Driven Insights & Personalized Strategies</h4>
-      <p className="text-lg text-[#4A4A4A] mb-4">
-        Leverage the power of artificial intelligence to create a customized investment plan that suits your financial goals. Our AI algorithms analyze market trends, personal preferences, and risk tolerance to develop a strategy tailored just for you.
-      </p>
-      <h4 className="text-xl font-semibold text-[#4A4A4A] mb-1">3. Simplified Investing for All Levels</h4>
-      <p className="text-lg text-[#4A4A4A] mb-4">
-        Whether you’re just starting out or you’ve been investing for years, our platform provides easy-to-understand recommendations and guidance. We ensure that you can invest smartly, regardless of your prior experience.
-      </p>
+    <div className="min-h-screen bg-[#F9F9F9] font-poppins text-[#4A4A4A] px-8 py-12">
+      <div className="max-w-4xl mx-auto text-center">
+        <h1 className="text-5xl font-semibold text-[#E85A9C] mb-6">About Vesta AI</h1>
+        <p className="text-lg mb-6 leading-relaxed">
+          Empowering women to take control of their financial future with AI-driven investment insights.
+        </p>
+      </div>
+
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+        <div className="bg-white shadow-lg rounded-2xl p-6">
+          <h2 className="text-2xl font-semibold mb-4 text-[#E85A9C]">Our Mission</h2>
+          <p className="text-lg leading-relaxed">
+            At Vesta AI, we believe that financial independence is essential. Our AI-powered investment platform is designed
+            specifically for women, providing personalized strategies and expert advice to make informed, confident investment decisions.
+          </p>
+        </div>
+
+        <div className="bg-white shadow-lg rounded-2xl p-6">
+          <h2 className="text-2xl font-semibold mb-4 text-[#E85A9C]">Why Choose Us?</h2>
+          <ul className="text-lg leading-relaxed list-disc list-inside">
+            <li>AI-driven personalized investment strategies</li>
+            <li>Tailored financial planning for women</li>
+            <li>Simple and beginner-friendly investment insights</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto mt-16">
+        <h2 className="text-3xl font-semibold text-center text-[#E85A9C] mb-8">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="bg-white shadow-md p-5 rounded-xl">
+            <h3 className="text-xl font-semibold mb-2">What is Vesta AI?</h3>
+            <p className="text-lg leading-relaxed">Vesta AI is an AI-powered investment platform designed for women, offering smart insights and personalized strategies.</p>
+          </div>
+          <div className="bg-white shadow-md p-5 rounded-xl">
+            <h3 className="text-xl font-semibold mb-2">How does the AI work?</h3>
+            <p className="text-lg leading-relaxed">Our AI analyzes market trends, user preferences, and risk tolerance to create customized investment strategies.</p>
+          </div>
+          <div className="bg-white shadow-md p-5 rounded-xl">
+            <h3 className="text-xl font-semibold mb-2">Is the platform suitable for beginners?</h3>
+            <p className="text-lg leading-relaxed">Yes! Vesta AI is designed for both beginners and experienced investors, offering easy-to-understand recommendations.</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
